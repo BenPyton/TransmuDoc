@@ -3,7 +3,7 @@
 This little command-line tool should be used with [my fork](https://github.com/BenPyton/KantanDocGen) of the great [KantanDocGen Plugin](https://github.com/kamrann/KantanDocGenPlugin).
 
 This has been inspired by the original [KantanDocGen Tool](https://github.com/kamrann/KantanDocGenTool), it has been completely rewritten from scratch.\
-Using the default xslt files will produce markdown files (instead of html in the original tool).\
+Using the default xslt files will produce markdown files usable as-is in a [Docusaurus](https://docusaurus.io/) website (instead of html in the original tool).\
 However, TransmuDoc is able to transform any *.xml files (with no specific folder tree) in any output format.\
 (*This tool uses an updated Saxon-HE version, allowing non-xml outputs*)
 
