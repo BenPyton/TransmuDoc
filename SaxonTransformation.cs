@@ -51,7 +51,7 @@ namespace TransmuDoc
 					{
 						msg.OnError = () => { success = false; };
 						transformer.BaseOutputUri = new Uri(outputFile);
-						transformer.SetInputStream(inputStream, new Uri(Path.GetDirectoryName(inputFile)));
+                        transformer.SetInputStream(inputStream, new Uri(inputFile));
 						transformer.Run(destination); // this will set HasError if an xsl:message contains "error:"
 					}
 				}
