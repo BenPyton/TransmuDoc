@@ -59,9 +59,11 @@ namespace TransmuDoc
 
 			// Fill default values
 			ConsoleArgs arguments = new ConsoleArgs();
-			arguments.BaseDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "..");
+			arguments.Name = string.Empty;
+            arguments.BaseDir = Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), "..");
 			arguments.OutputDir = Directory.GetCurrentDirectory();
-			arguments.IndexXsl = "xslt/index_xform.xsl";
+            arguments.IntermediateDir = string.Empty;
+            arguments.IndexXsl = "xslt/index_xform.xsl";
 			arguments.ClassXsl = "xslt/class_docs_xform.xsl";
 			arguments.NodeXsl = "xslt/node_docs_xform.xsl";
 			arguments.XslFile = "xslt/generic_docs_xform.xsl";
