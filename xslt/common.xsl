@@ -109,7 +109,7 @@
 	<xsl:template name="title">
 		<xsl:param name="title"/>
 		<xsl:text>&#xA;# </xsl:text><xsl:value-of select="$title"/>
-		<xsl:text>&#xA;&#xA;</xsl:text>
+		<xsl:text>&#xA;</xsl:text>
 	</xsl:template>
 	
 	<!-- Template to create a link in markdown -->
