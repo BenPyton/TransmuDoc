@@ -84,6 +84,7 @@
 		<xsl:apply-templates select="description"/>
 
 		<!-- Tables -->
+		<xsl:apply-templates select="events"/>
 		<xsl:apply-templates select="properties | fields"/>
 		<xsl:apply-templates select="nodes"/>
 		<xsl:apply-templates select="values"/>

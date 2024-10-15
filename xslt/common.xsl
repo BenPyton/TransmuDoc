@@ -64,6 +64,37 @@
 		<xsl:apply-templates select="description"/>
 		<xsl:text> |&#xA;</xsl:text>
 	</xsl:template>
+
+	<!-- Template for the event table -->
+	<xsl:template match="events">
+		<xsl:param name="name"/>
+		<xsl:text>&#xA;## </xsl:text>
+		<xsl:value-of select="if ($name) then $name else 'Events'"/>
+		<xsl:text>&#xA;&#xA;</xsl:text>
+		<xsl:text>| Name | Category | Description |&#xA;</xsl:text>
+		<xsl:text>| ---- | -------- | ----------- |&#xA;</xsl:text>
+		<xsl:apply-templates select="event[not(inheritedFrom) or key('class-by-id', inheritedFrom/id, document('../../index.xml',.))]">
+			<xsl:sort select="inheritedFrom/id"/>
+			<xsl:sort select="category"/>
+			<xsl:sort select="display_name"/>
+		</xsl:apply-templates>
+	</xsl:template>
+
+	<!-- Template for the event row -->
+	<xsl:template match="event">
+		<xsl:text>| </xsl:text>
+		<xsl:apply-templates select="display_name"/>
+		<xsl:if test="inheritedFrom">
+			<xsl:text>&lt;br/&gt;(inherited from </xsl:text>
+			<xsl:apply-templates select="inheritedFrom/display_name"/>
+			<xsl:text>)</xsl:text>
+		</xsl:if>
+		<xsl:text> | </xsl:text>
+		<xsl:value-of select="my:no_wrap(my:multiline(category))"/>
+		<xsl:text> | </xsl:text>
+		<xsl:apply-templates select="description"/>
+		<xsl:text> |&#xA;</xsl:text>
+	</xsl:template>
 	
 	<!-- Template to create a breadcrumb from a list -->
 	<xsl:template name="breadcrumb">
