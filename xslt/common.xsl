@@ -6,6 +6,7 @@
 	>
 	
 	<xsl:key name="class-by-id" match="class" use="id" />
+	<xsl:key name="variable-by-id" match="variable" use="id" />
 
 	<!-- Notify file transformation -->
 	<xsl:template name="notification">
@@ -44,7 +45,23 @@
 	<!-- Template for the property row -->
 	<xsl:template match="property|field">
 		<xsl:text>| </xsl:text>
-		<xsl:apply-templates select="display_name"/>
+		<xsl:choose>
+			<xsl:when test="../../variables and key('variable-by-id', name, ../../variables)">
+				<xsl:call-template name="link">
+					<xsl:with-param name="name" select="display_name"/>
+					<xsl:with-param name="href">
+						<xsl:text>Variables/</xsl:text>
+						<xsl:value-of select="name"/>
+						<xsl:text>/</xsl:text>
+						<xsl:value-of select="name"/>
+						<xsl:text>.md</xsl:text>
+					</xsl:with-param>
+				</xsl:call-template>
+			</xsl:when>
+			<xsl:otherwise>
+				<xsl:apply-templates select="display_name"/>
+			</xsl:otherwise>
+		</xsl:choose>
 		<xsl:if test="inheritedFrom">
 			<xsl:text>&lt;br/&gt;(inherited from </xsl:text>
 			<xsl:apply-templates select="inheritedFrom/display_name"/>
